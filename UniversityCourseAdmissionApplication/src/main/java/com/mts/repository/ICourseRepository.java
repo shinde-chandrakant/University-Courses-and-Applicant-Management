@@ -2,10 +2,11 @@ package com.mts.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.mts.entities.Course;
 import com.mts.exception.CourseNotFoundException;
 
-public interface ICourseRepository {
+public interface ICourseRepository extends JpaRepository<Course, Integer>{
 	
 	public Course addCourse(Course course);
 	public Course removeCourse(int courseid) throws CourseNotFoundException;
