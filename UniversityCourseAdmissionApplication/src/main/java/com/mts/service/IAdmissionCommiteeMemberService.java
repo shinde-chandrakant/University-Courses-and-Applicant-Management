@@ -4,18 +4,20 @@ import java.util.List;
 
 import com.mts.entities.Admission;
 import com.mts.entities.AdmissionCommiteeMember;
+import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
+import com.mts.exception.AdmissionMemNotFoundException;
 
 public interface IAdmissionCommiteeMemberService {
 	public AdmissionCommiteeMember addCommiteeMember(AdmissionCommiteeMember member);
 
-	public AdmissionCommiteeMember updateCommiteeMember(AdmissionCommiteeMember member);
+	public AdmissionCommiteeMember updateCommiteeMember(AdmissionCommiteeMember member)throws AdmissionMemNotFoundException;
 
-	public AdmissionCommiteeMember viewCommiteeMember(int adminId);
+	public AdmissionCommiteeMember viewCommiteeMember(int adminId)throws AdmissionMemNotFoundException;
 
-	public void removeCommiteeMember(int adminId);
+	public void removeCommiteeMember(int adminId)throws AdmissionMemNotFoundException;
 
 	public List<AdmissionCommiteeMember> viewAllCommiteeMembers();
 
-	public void provideAdmissionResult(Applicant applicant, Admission admission);
+	public AdmissionStatus provideAdmissionResult(Applicant applicant, Admission admission);
 }

@@ -14,32 +14,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mts.entities.Course;
 import com.mts.exception.CourseNotFoundException;
-import com.mts.service.serviceImpl.CourseServiceImpl;
+import com.mts.service.ICourseService;
 
 @RestController
 @RequestMapping("/course")
 public class CourseController {
 
 	@Autowired
-	CourseServiceImpl courseServiceImpl;
+	ICourseService service;
 	
 	@PostMapping("/addCourse")
 	public Course addCourse(@RequestBody Course course) {
-		return courseServiceImpl.addCourse(course);
+		return service.addCourse(course);
 	}
 	
 	@DeleteMapping("/removeCourse/{courseId}")
 	public Course removeCourse(@PathVariable int courseId) throws CourseNotFoundException {
-		return courseServiceImpl.removeCourse(courseId);
+		return service.removeCourse(courseId);
 	}
 	
 	@PutMapping("/updateCourse")
 	public Course updateCourse(@RequestBody Course course) throws CourseNotFoundException {
-		return courseServiceImpl.updateCourse(course);
+		return service.updateCourse(course);
 	}
 	
 	@GetMapping("/viewAllCourses")
 	public List<Course> viewAllCourses(){
-		return courseServiceImpl.viewAllCourses();
+		return service.viewAllCourses();
 	}
 }

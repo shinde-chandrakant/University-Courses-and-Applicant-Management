@@ -23,14 +23,17 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Override
 	public Course removeCourse(int courseId) throws CourseNotFoundException {
-		Course course = courseRepository.findById(courseId).orElse(null);
+		Course course = courseRepository.findById(courseId).orElseThrow(()->new CourseNotFoundException("No record present with given id"));
+
 		courseRepository.delete(course);
 		return course;
+
 	}
 
 	@Override
 	public Course updateCourse(Course course) throws CourseNotFoundException {
-		Course existingCourse = courseRepository.findById(course.getCourseId()).orElse(null);
+		Course existingCourse = courseRepository.findById(course.getCourseId()).orElseThrow(()->new CourseNotFoundException("Cann't update. No Course with this Id found!"));
+
 		existingCourse.setCourseName(course.getCourseName());
 		existingCourse.setCourseDuration(course.getCourseDuration());
 		existingCourse.setCourseStartDate(course.getCourseStartDate());
@@ -42,7 +45,7 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Override
 	public Course viewCourse(int courseid) throws CourseNotFoundException {
-		return courseRepository.findById(courseid).orElse(null);
+		return courseRepository.findById(courseid).orElseThrow(()->new CourseNotFoundException("Invalid courseId !"));
 	}
 
 	@Override
