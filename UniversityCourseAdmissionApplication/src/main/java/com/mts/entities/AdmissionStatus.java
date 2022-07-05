@@ -1,5 +1,5 @@
 package com.mts.entities;
 
-public class AdmissionStatus {
-
+public enum AdmissionStatus {
+	Applied, Pending, Confirmed, Rejected;
 }

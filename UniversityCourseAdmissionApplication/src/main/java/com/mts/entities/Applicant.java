@@ -1,7 +1,12 @@
 package com.mts.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Applicant {
@@ -11,7 +16,10 @@ public class Applicant {
 	private String mobileNumber;
 	private String applicantDegree;
 	private int applicantGraduationPercent;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="admissionId")
 	private Admission admission;
+	@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
 	
 	public Applicant() {
