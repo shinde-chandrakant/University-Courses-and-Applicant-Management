@@ -20,7 +20,7 @@ import com.mts.exception.AdmissionMemNotFoundException;
 import com.mts.service.IAdmissionCommiteeMemberService;
 
 @RestController
-@RequestMapping("/admissionMember")
+@RequestMapping("/commiteeMember")
 public class AdmissionCommiteeController {
 
 	@Autowired

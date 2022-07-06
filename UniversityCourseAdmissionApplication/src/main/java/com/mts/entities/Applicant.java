@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Applicant {
 	@Id
-	private String applicantId;
+	private int applicantId;
 	private String applicantName;
 	private String mobileNumber;
 	private String applicantDegree;
@@ -26,7 +26,7 @@ public class Applicant {
 		super();
 	}
 
-	public Applicant(String applicantId, String applicantName, String mobileNumber, String applicantDegree,
+	public Applicant(int applicantId, String applicantName, String mobileNumber, String applicantDegree,
 			int applicantGraduationPercent, Admission admission, AdmissionStatus status) {
 		super();
 		this.applicantId = applicantId;
@@ -38,11 +38,11 @@ public class Applicant {
 		this.status = status;
 	}
 
-	public String getApplicantId() {
+	public int getApplicantId() {
 		return applicantId;
 	}
 
-	public void setApplicantId(String applicantId) {
+	public void setApplicantId(int applicantId) {
 		this.applicantId = applicantId;
 	}
 

@@ -13,7 +13,7 @@ public interface IApplicantService {
 
 	public Applicant deleteApplicant(Applicant applicant) throws ApplicantNotFoundException;
 
-	public Applicant viewApplicant(int applicant) throws ApplicantNotFoundException;
+	public Applicant viewApplicant(int applicantId) throws ApplicantNotFoundException;
 
 	public List<Applicant> viewAllApplicantsByStatus(AdmissionStatus status);
 
