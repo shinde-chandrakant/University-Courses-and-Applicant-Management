@@ -21,7 +21,7 @@ import com.mts.service.IAdmissionCommiteeMemberService;
 
 @RestController
 @RequestMapping("/admissionMember")
-public class AdmissionCommiteeMemberController {
+public class AdmissionCommiteeController {
 
 	@Autowired
 	IAdmissionCommiteeMemberService service;

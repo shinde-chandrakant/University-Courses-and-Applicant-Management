@@ -10,14 +10,14 @@ import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
 import com.mts.exception.AdmissionMemNotFoundException;
-import com.mts.repository.IAdmissionCommiteeMemberRepository;
+import com.mts.repository.IAdmissionCommiteeRepository;
 import com.mts.service.IAdmissionCommiteeMemberService;
 
 @Service
 public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMemberService{
 
 	@Autowired
-	IAdmissionCommiteeMemberRepository repo;
+	IAdmissionCommiteeRepository repo;
 	
 	@Override
 	public AdmissionCommiteeMember addCommiteeMember(AdmissionCommiteeMember member) {
