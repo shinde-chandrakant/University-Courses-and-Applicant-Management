@@ -4,12 +4,14 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Course {
 	
 	@Id
 	private int courseId;
+	@NotNull
 	private String courseName;
 	private String courseDuration;
 	private LocalDate courseStartDate;

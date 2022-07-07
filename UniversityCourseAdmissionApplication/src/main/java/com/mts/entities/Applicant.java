@@ -7,11 +7,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Applicant {
 	@Id
 	private int applicantId;
+	@NotNull
 	private String applicantName;
 	private String mobileNumber;
 	private String applicantDegree;

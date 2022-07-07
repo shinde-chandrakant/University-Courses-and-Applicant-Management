@@ -2,11 +2,13 @@ package com.mts.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class AdmissionCommiteeMember {
 	@Id
 	private int adminId;
+	@NotNull
 	private String adminName;
 	private String adminContact;
 	private String password;
