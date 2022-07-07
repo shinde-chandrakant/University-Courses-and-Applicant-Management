@@ -21,13 +21,14 @@ public class Applicant {
 	private Admission admission;
 	@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
+	private String password;
 	
 	public Applicant() {
 		super();
 	}
 
 	public Applicant(int applicantId, String applicantName, String mobileNumber, String applicantDegree,
-			int applicantGraduationPercent, Admission admission, AdmissionStatus status) {
+			int applicantGraduationPercent, Admission admission, AdmissionStatus status, String password) {
 		super();
 		this.applicantId = applicantId;
 		this.applicantName = applicantName;
@@ -36,6 +37,7 @@ public class Applicant {
 		this.applicantGraduationPercent = applicantGraduationPercent;
 		this.admission = admission;
 		this.status = status;
+		this.password = password;
 	}
 
 	public int getApplicantId() {
@@ -94,11 +96,20 @@ public class Applicant {
 		this.status = status;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "Applicant [applicantId=" + applicantId + ", applicantName=" + applicantName + ", mobileNumber="
 				+ mobileNumber + ", applicantDegree=" + applicantDegree + ", applicantGraduationPercent="
-				+ applicantGraduationPercent + ", admission=" + admission + ", status=" + status + "]";
+				+ applicantGraduationPercent + ", admission=" + admission + ", status=" + status + ", password="
+				+ password + "]";
 	}
 	
 }

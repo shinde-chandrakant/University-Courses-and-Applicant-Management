@@ -1,10 +1,13 @@
 package com.mts.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mts.dto.StaffMemberDto;
 import com.mts.entities.Course;
 import com.mts.entities.UniversityStaffMember;
 import com.mts.exception.CourseNotFoundException;
@@ -22,6 +25,9 @@ public class UniversityStaffServiceImpl implements IUniversityStaffService{
 	@Autowired
 	ICourseRepository courseRepository;
 	
+	@Autowired
+	ModelMapper mapper;
+	
 	@Override
 	public UniversityStaffMember addStaff(UniversityStaffMember user) {
 		return repo.save(user);
@@ -33,12 +39,14 @@ public class UniversityStaffServiceImpl implements IUniversityStaffService{
 		
 		member.setPassword(user.getPassword());
 		member.setRole(user.getRole());
+		member.setPassword(user.getPassword());
 		return repo.save(member);
 	}
 
 	@Override
-	public UniversityStaffMember viewStaff(int staffid) throws StaffMemberNotFoundException {
-		return repo.findById(staffid).orElseThrow(()->new StaffMemberNotFoundException("Invalid staffId !"));
+	public StaffMemberDto viewStaff(int staffid) throws StaffMemberNotFoundException {
+		UniversityStaffMember member=repo.findById(staffid).orElseThrow(()->new StaffMemberNotFoundException("Invalid staffId !"));
+		return mapper.map(member, StaffMemberDto.class);
 	}
 
 	@Override
@@ -47,8 +55,10 @@ public class UniversityStaffServiceImpl implements IUniversityStaffService{
 	}
 
 	@Override
-	public List<UniversityStaffMember> viewAllStaffs() {
-		return repo.findAll();
+	public List<StaffMemberDto> viewAllStaffs() {
+		List<UniversityStaffMember> lst=repo.findAll();
+		List<StaffMemberDto> toDTO=Arrays.asList(mapper.map(lst, StaffMemberDto[].class));
+		return toDTO;
 	}
 
 	@Override

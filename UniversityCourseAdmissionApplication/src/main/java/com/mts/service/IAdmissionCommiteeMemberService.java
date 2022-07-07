@@ -2,6 +2,7 @@ package com.mts.service;
 
 import java.util.List;
 
+import com.mts.dto.AdmissionCommiteeMemberDto;
 import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
@@ -12,11 +13,11 @@ public interface IAdmissionCommiteeMemberService {
 
 	public AdmissionCommiteeMember updateCommiteeMember(AdmissionCommiteeMember member)throws AdmissionMemNotFoundException;
 
-	public AdmissionCommiteeMember viewCommiteeMember(int adminId)throws AdmissionMemNotFoundException;
+	public AdmissionCommiteeMemberDto viewCommiteeMember(int adminId)throws AdmissionMemNotFoundException;
 
 	public void removeCommiteeMember(int adminId)throws AdmissionMemNotFoundException;
 
-	public List<AdmissionCommiteeMember> viewAllCommiteeMembers();
+	public List<AdmissionCommiteeMemberDto> viewAllCommiteeMembers();
 
 	public AdmissionStatus provideAdmissionResult(Applicant applicant);
 }

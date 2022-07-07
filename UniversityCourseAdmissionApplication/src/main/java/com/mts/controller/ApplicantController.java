@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mts.dto.ApplicantDto;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
 import com.mts.exception.ApplicantNotFoundException;
@@ -40,12 +41,12 @@ public class ApplicantController {
 	}
 	
 	@GetMapping("/viewApplicant/{applicantId}")
-	public Applicant viewApplicant(@PathVariable int applicantId) throws ApplicantNotFoundException {
+	public ApplicantDto viewApplicant(@PathVariable int applicantId) throws ApplicantNotFoundException {
 		return service.viewApplicant(applicantId);
 	}
 	
 	@GetMapping("/viewAllApplicantsByStatus/{status}")
-	public List<Applicant> viewAllApplicantsByStatus(@PathVariable AdmissionStatus status){
+	public List<ApplicantDto> viewAllApplicantsByStatus(@PathVariable AdmissionStatus status){
 		return service.viewAllApplicantsByStatus(status);
 	}
 }

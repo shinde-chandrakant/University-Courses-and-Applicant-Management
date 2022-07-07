@@ -9,16 +9,18 @@ public class AdmissionCommiteeMember {
 	private int adminId;
 	private String adminName;
 	private String adminContact;
+	private String password;
 	
 	public AdmissionCommiteeMember() {
 		super();
 	}
 
-	public AdmissionCommiteeMember(int adminId, String adminName, String adminContact) {
+	public AdmissionCommiteeMember(int adminId, String adminName, String adminContact, String password) {
 		super();
 		this.adminId = adminId;
 		this.adminName = adminName;
 		this.adminContact = adminContact;
+		this.password = password;
 	}
 
 	public int getAdminId() {
@@ -45,10 +47,18 @@ public class AdmissionCommiteeMember {
 		this.adminContact = adminContact;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "AdmissionCommiteeMember [adminId=" + adminId + ", adminName=" + adminName + ", adminContact="
-				+ adminContact + "]";
+				+ adminContact + ", password=" + password + "]";
 	}
 	
 }

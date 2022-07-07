@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mts.dto.AdmissionCommiteeMemberDto;
 import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
@@ -35,7 +36,7 @@ public class AdmissionCommiteeController {
 	}
 	
 	@GetMapping("/viewCommiteeMember/{adminId}")
-	public AdmissionCommiteeMember viewCommiteeMember(@PathVariable int adminId) throws AdmissionMemNotFoundException {
+	public AdmissionCommiteeMemberDto viewCommiteeMember(@PathVariable int adminId) throws AdmissionMemNotFoundException {
 		return service.viewCommiteeMember(adminId);
 	}
 	
@@ -45,7 +46,7 @@ public class AdmissionCommiteeController {
 	}
 	
 	@GetMapping("/viewAllCommiteeMember")
-	public List<AdmissionCommiteeMember> viewAllCommiteeMembers(){
+	public List<AdmissionCommiteeMemberDto> viewAllCommiteeMembers(){
 		return service.viewAllCommiteeMembers();
 	}
 	

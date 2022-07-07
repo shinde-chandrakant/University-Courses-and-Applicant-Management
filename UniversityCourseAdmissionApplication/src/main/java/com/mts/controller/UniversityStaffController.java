@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mts.dto.StaffMemberDto;
 import com.mts.entities.Course;
 import com.mts.entities.UniversityStaffMember;
 import com.mts.exception.CourseNotFoundException;
@@ -22,8 +23,7 @@ import com.mts.service.IUniversityStaffService;
 @RequestMapping("/staff")
 public class UniversityStaffController {
 	
-	@Autowired
-	
+	@Autowired	
 	IUniversityStaffService service;
 	
 	@PostMapping("/addStaff")
@@ -37,7 +37,7 @@ public class UniversityStaffController {
 	}
 	
 	@GetMapping("/viewStaffMember/{staffid}")
-	public UniversityStaffMember viewStaffMember(@PathVariable int staffid) throws StaffMemberNotFoundException {
+	public StaffMemberDto viewStaffMember(@PathVariable int staffid) throws StaffMemberNotFoundException {
 		return service.viewStaff(staffid);
 	}
 	
@@ -47,7 +47,7 @@ public class UniversityStaffController {
 	}
 	
 	@GetMapping("/viewAllStaffs")
-	public List<UniversityStaffMember> viewAllStaffs(){
+	public List<StaffMemberDto> viewAllStaffs(){
 		return service.viewAllStaffs();
 	}
 	
