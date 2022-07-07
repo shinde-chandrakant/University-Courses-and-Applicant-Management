@@ -2,7 +2,6 @@ package com.mts.service;
 
 import java.util.List;
 
-import com.mts.entities.Admission;
 import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
@@ -19,5 +18,5 @@ public interface IAdmissionCommiteeMemberService {
 
 	public List<AdmissionCommiteeMember> viewAllCommiteeMembers();
 
-	public AdmissionStatus provideAdmissionResult(Applicant applicant, Admission admission);
+	public AdmissionStatus provideAdmissionResult(Applicant applicant);
 }

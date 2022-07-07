@@ -32,7 +32,7 @@ public class ApplicantServiceImpl implements IApplicantService{
 		applicant1.setApplicantGraduationPercent(applicant.getApplicantGraduationPercent());
 		applicant1.setAdmission(applicant.getAdmission());
 		applicant1.setStatus(applicant.getStatus());
-		return applicant1;
+		return repo.save(applicant1);
 	}
 
 	@Override

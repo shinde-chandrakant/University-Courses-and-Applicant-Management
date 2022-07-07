@@ -33,7 +33,7 @@ public class UniversityStaffServiceImpl implements IUniversityStaffService{
 		
 		member.setPassword(user.getPassword());
 		member.setRole(user.getRole());
-		return member;
+		return repo.save(member);
 	}
 
 	@Override

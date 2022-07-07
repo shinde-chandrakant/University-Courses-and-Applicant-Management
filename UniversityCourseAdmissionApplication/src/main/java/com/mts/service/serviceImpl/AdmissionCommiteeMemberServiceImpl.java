@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mts.entities.Admission;
 import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
@@ -29,7 +28,7 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 		AdmissionCommiteeMember member1=repo.findById(member.getAdminId()).orElseThrow(()->new AdmissionMemNotFoundException("No record present with given id"));
 		member1.setAdminName(member.getAdminName());
 		member1.setAdminContact(member.getAdminContact());
-		return member1;
+		return repo.save(member1);
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 	}
 
 	@Override
-	public AdmissionStatus provideAdmissionResult(Applicant applicant, Admission admission) {
+	public AdmissionStatus provideAdmissionResult(Applicant applicant) {
 		return applicant.getStatus();	
 	}
 

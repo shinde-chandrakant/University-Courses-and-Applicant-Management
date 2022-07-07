@@ -18,7 +18,7 @@ import com.mts.exception.ApplicantNotFoundException;
 import com.mts.service.IApplicantService;
 
 @RestController
-@RequestMapping("/Applicant")
+@RequestMapping("/applicant")
 public class ApplicantController {
 
 	@Autowired

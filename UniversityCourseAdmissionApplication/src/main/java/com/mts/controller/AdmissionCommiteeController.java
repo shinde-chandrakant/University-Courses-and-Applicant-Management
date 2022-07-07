@@ -1,7 +1,6 @@
 package com.mts.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mts.entities.Admission;
 import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
@@ -46,13 +44,13 @@ public class AdmissionCommiteeController {
 		service.removeCommiteeMember(adminId);
 	}
 	
-	@GetMapping("/viewAllCommiteeMember/")
+	@GetMapping("/viewAllCommiteeMember")
 	public List<AdmissionCommiteeMember> viewAllCommiteeMembers(){
 		return service.viewAllCommiteeMembers();
 	}
 	
 	@GetMapping("/getAdmissionResult")
-	public AdmissionStatus getAdmissionResult(@RequestBody Applicant applicant, @RequestBody Admission admission) {
-		return service.provideAdmissionResult(applicant, admission);
+	public AdmissionStatus getAdmissionResult(@RequestBody Applicant applicant) {
+		return service.provideAdmissionResult(applicant);
 	}
 }

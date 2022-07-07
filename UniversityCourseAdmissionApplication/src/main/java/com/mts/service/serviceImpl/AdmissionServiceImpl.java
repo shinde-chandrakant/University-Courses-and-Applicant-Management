@@ -29,7 +29,7 @@ public class AdmissionServiceImpl implements IAdmissionService{
 		admission1.setApplicantId(admission.getApplicantId());
 		admission1.setAdmissionDate(admission.getAdmissionDate());
 		admission1.setStatus(admission.getStatus());
-		return admission1;
+		return repo.save(admission1);
 	}
 
 	@Override

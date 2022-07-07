@@ -17,7 +17,7 @@ public class Applicant {
 	private String applicantDegree;
 	private int applicantGraduationPercent;
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="admissionId")
+	@JoinColumn(referencedColumnName = "admissionId", name="admissionId")
 	private Admission admission;
 	@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
