@@ -22,7 +22,7 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 	IAdmissionCommiteeRepository repo;
 	
 	@Autowired
-	IApplicantRepository ApplicantRepo;
+	IApplicantRepository applicantRepo;
 	
 	@Autowired
 	ModelMapper mapper; 
@@ -62,7 +62,7 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 
 	@Override
 	public AdmissionStatus provideAdmissionResult(int applicantId) {
-		return ApplicantRepo.getStatusById(applicantId);	
+		return applicantRepo.getStatusById(applicantId);	
 	}
 
 }
