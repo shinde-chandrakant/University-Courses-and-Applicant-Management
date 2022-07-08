@@ -3,6 +3,8 @@ package com.mts.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,29 +26,46 @@ public class ApplicantController {
 
 	@Autowired
 	IApplicantService service;
-	
+
 	@PostMapping("/addApplicant")
-	public Applicant addApplicant(@RequestBody Applicant applicant) {
-		return service.addApplicant(applicant);
+	public ResponseEntity<Applicant> addApplicant(@RequestBody Applicant applicant) {
+		Applicant applicant1 = service.addApplicant(applicant);
+		return new ResponseEntity<>(applicant1, HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/updateApplicant")
-	public Applicant updateApplicant(@RequestBody Applicant applicant) throws ApplicantNotFoundException {
-		return service.updateApplicant(applicant);
+	public ResponseEntity<Object> updateApplicant(@RequestBody Applicant applicant) {
+		try {
+			Applicant applicant1 = service.updateApplicant(applicant);
+			return new ResponseEntity<>(applicant1, HttpStatus.OK);
+		} catch (ApplicantNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
-	
+
 	@DeleteMapping("/deleteApplicant")
-	public Applicant deleteApplicant(@RequestBody Applicant applicant) throws ApplicantNotFoundException {
-		return service.deleteApplicant(applicant);
+	public ResponseEntity<String> deleteApplicant(@RequestBody Applicant applicant) {
+		try {
+			service.deleteApplicant(applicant);
+			return ResponseEntity.ok("Deleted..");
+		} catch (ApplicantNotFoundException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
-	
+
 	@GetMapping("/viewApplicant/{applicantId}")
-	public ApplicantDto viewApplicant(@PathVariable int applicantId) throws ApplicantNotFoundException {
-		return service.viewApplicant(applicantId);
+	public ResponseEntity<Object> viewApplicant(@PathVariable int applicantId) {
+		try {
+			ApplicantDto applicant1 = service.viewApplicant(applicantId);
+			return new ResponseEntity<>(applicant1, HttpStatus.OK);
+		} catch (ApplicantNotFoundException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
-	
+
 	@GetMapping("/viewAllApplicantsByStatus/{status}")
-	public List<ApplicantDto> viewAllApplicantsByStatus(@PathVariable AdmissionStatus status){
-		return service.viewAllApplicantsByStatus(status);
+	public ResponseEntity<List<ApplicantDto>> viewAllApplicantsByStatus(@PathVariable AdmissionStatus status) {
+		List<ApplicantDto> lst = service.viewAllApplicantsByStatus(status);
+		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 }

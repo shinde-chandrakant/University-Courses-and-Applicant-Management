@@ -3,6 +3,8 @@ package com.mts.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,42 +29,73 @@ public class UniversityStaffController {
 	IUniversityStaffService service;
 	
 	@PostMapping("/addStaff")
-	public UniversityStaffMember addStaff(@RequestBody UniversityStaffMember user) {
-		return service.addStaff(user);
+	public ResponseEntity<UniversityStaffMember> addStaff(@RequestBody UniversityStaffMember user) {
+		UniversityStaffMember member1= service.addStaff(user);
+		return new ResponseEntity<>(member1, HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateStaff")
-	public UniversityStaffMember updateStaff(@RequestBody UniversityStaffMember user) throws StaffMemberNotFoundException {
-		return service.updateStaff(user);
+	public ResponseEntity<Object> updateStaff(@RequestBody UniversityStaffMember user) {
+		try {
+			UniversityStaffMember applicant1= service.updateStaff(user);
+			return new ResponseEntity<>(applicant1, HttpStatus.OK);
+		} catch (StaffMemberNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
 	
 	@GetMapping("/viewStaffMember/{staffid}")
-	public StaffMemberDto viewStaffMember(@PathVariable int staffid) throws StaffMemberNotFoundException {
-		return service.viewStaff(staffid);
+	public ResponseEntity<Object> viewStaffMember(@PathVariable int staffid){
+		try {
+			StaffMemberDto applicant1= service.viewStaff(staffid);
+			return new ResponseEntity<>(applicant1, HttpStatus.OK);
+		} catch (StaffMemberNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
 	
 	@DeleteMapping("/removeStaff/{staffid}")
-	public void removeStaff(@PathVariable int staffid) throws StaffMemberNotFoundException {
-		service.removeStaff(staffid);
+	public ResponseEntity<String> removeStaff(@PathVariable int staffid) {
+		
+		try {
+			service.removeStaff(staffid);
+			return ResponseEntity.ok("Deleted..");
+		} catch (StaffMemberNotFoundException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@GetMapping("/viewAllStaffs")
-	public List<StaffMemberDto> viewAllStaffs(){
-		return service.viewAllStaffs();
+	public ResponseEntity<List<StaffMemberDto>> viewAllStaffs(){
+		List<StaffMemberDto> lst= service.viewAllStaffs();
+		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 	
 	@PostMapping("/addCourse")
-	public Course addCourse(@RequestBody Course course) {
-		return service.addCourse(course);
+	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
+		Course course1= service.addCourse(course);
+		return new ResponseEntity<>(course1, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/removeCourse/{courseId}")
-	public Course removeCourse(@PathVariable int courseId) throws CourseNotFoundException {
-		return service.removeCourse(courseId);
+	public ResponseEntity<String> removeCourse(@PathVariable int courseId) {
+		
+		try {
+			service.removeCourse(courseId);
+			return ResponseEntity.ok("Deleted..");
+		} catch (CourseNotFoundException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@PutMapping("/updateCourse")
-	public Course updateCourse(@RequestBody Course course) throws CourseNotFoundException {
-		return service.updateCourse(course);
+	public ResponseEntity<Object> updateCourse(@RequestBody Course course) {
+		
+		try {
+			Course course1=  service.updateCourse(course);
+			return new ResponseEntity<>(course1, HttpStatus.OK);
+		} catch (CourseNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
 }

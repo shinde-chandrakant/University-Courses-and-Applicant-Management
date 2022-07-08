@@ -3,6 +3,7 @@ package com.mts.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class AdmissionCommiteeMember {
@@ -10,6 +11,7 @@ public class AdmissionCommiteeMember {
 	private int adminId;
 	@NotNull
 	private String adminName;
+	@Pattern(regexp="[6-9]{1}[0-9]{9}",message ="contact number must have 10 digits")
 	private String adminContact;
 	private String password;
 	

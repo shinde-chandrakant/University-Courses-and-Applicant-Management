@@ -5,7 +5,6 @@ import java.util.List;
 import com.mts.dto.AdmissionCommiteeMemberDto;
 import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
-import com.mts.entities.Applicant;
 import com.mts.exception.AdmissionMemNotFoundException;
 
 public interface IAdmissionCommiteeMemberService {
@@ -19,5 +18,5 @@ public interface IAdmissionCommiteeMemberService {
 
 	public List<AdmissionCommiteeMemberDto> viewAllCommiteeMembers();
 
-	public AdmissionStatus provideAdmissionResult(Applicant applicant);
+	public AdmissionStatus provideAdmissionResult(int applicantId);
 }

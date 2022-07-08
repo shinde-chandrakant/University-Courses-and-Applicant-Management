@@ -2,12 +2,14 @@ package com.mts.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class UniversityStaffMember {
 	@Id
 	private int staffId;
 	private String password;
+	@NotBlank(message = "role is mandatory")
 	private String role;
 	
 	public UniversityStaffMember() {

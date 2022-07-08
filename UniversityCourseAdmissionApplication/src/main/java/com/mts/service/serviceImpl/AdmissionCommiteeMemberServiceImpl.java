@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import com.mts.dto.AdmissionCommiteeMemberDto;
 import com.mts.entities.AdmissionCommiteeMember;
 import com.mts.entities.AdmissionStatus;
-import com.mts.entities.Applicant;
 import com.mts.exception.AdmissionMemNotFoundException;
 import com.mts.repository.IAdmissionCommiteeRepository;
+import com.mts.repository.IApplicantRepository;
 import com.mts.service.IAdmissionCommiteeMemberService;
 
 @Service
@@ -20,6 +20,9 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 
 	@Autowired
 	IAdmissionCommiteeRepository repo;
+	
+	@Autowired
+	IApplicantRepository ApplicantRepo;
 	
 	@Autowired
 	ModelMapper mapper; 
@@ -58,8 +61,8 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 	}
 
 	@Override
-	public AdmissionStatus provideAdmissionResult(Applicant applicant) {
-		return applicant.getStatus();	
+	public AdmissionStatus provideAdmissionResult(int applicantId) {
+		return ApplicantRepo.getStatusById(applicantId);	
 	}
 
 }

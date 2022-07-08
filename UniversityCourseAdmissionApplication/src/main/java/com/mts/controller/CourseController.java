@@ -3,6 +3,8 @@ package com.mts.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,24 +24,36 @@ public class CourseController {
 
 	@Autowired
 	ICourseService service;
-	
+
 	@PostMapping("/addCourse")
-	public Course addCourse(@RequestBody Course course) {
-		return service.addCourse(course);
+	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
+		Course course1 = service.addCourse(course);
+		return new ResponseEntity<>(course1, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/removeCourse/{courseId}")
-	public Course removeCourse(@PathVariable int courseId) throws CourseNotFoundException {
-		return service.removeCourse(courseId);
+	public ResponseEntity<String> removeCourse(@PathVariable int courseId) {
+		try {
+			service.removeCourse(courseId);
+			return ResponseEntity.ok("Deleted..");
+		} catch (CourseNotFoundException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
-	
+
 	@PutMapping("/updateCourse")
-	public Course updateCourse(@RequestBody Course course) throws CourseNotFoundException {
-		return service.updateCourse(course);
+	public ResponseEntity<Object> updateCourse(@RequestBody Course course) {
+		try {
+			Course course1 = service.updateCourse(course);
+			return new ResponseEntity<>(course1, HttpStatus.OK);
+		} catch (CourseNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
-	
+
 	@GetMapping("/viewAllCourses")
-	public List<Course> viewAllCourses(){
-		return service.viewAllCourses();
+	public ResponseEntity<List<Course>> viewAllCourses() {
+		List<Course> lst = service.viewAllCourses();
+		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 }

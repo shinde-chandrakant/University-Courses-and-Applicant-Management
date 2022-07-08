@@ -1,6 +1,7 @@
 package com.mts.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,17 +19,32 @@ public class LoginController {
 	ILoginService service;
 	
 	@GetMapping("/validateApplicant")
-	public Boolean loginAsApplicant(int applicantId, String password) throws ApplicantNotFoundException {
-		return service.loginAsApplicant(applicantId, password);
+	public ResponseEntity<Object> loginAsApplicant(int applicantId, String password) {
+		try {
+			service.loginAsApplicant(applicantId, password);
+			return ResponseEntity.ok("Login Validated..");
+		} catch (ApplicantNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
 	
 	@GetMapping("/validateCommiteeMember")
-	public boolean loginAsAdmissionCommiteeMember(int adminId, String password) throws AdmissionMemNotFoundException {
-		return service.loginAsAdmissionCommiteeMember(adminId, password);
+	public ResponseEntity<Object> loginAsAdmissionCommiteeMember(int adminId, String password) {
+		try {
+			service.loginAsAdmissionCommiteeMember(adminId, password);
+			return ResponseEntity.ok("Login Validated..");
+		} catch (AdmissionMemNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
 	
 	@GetMapping("/validateStaffMember")
-	public boolean loginAsUniversityStaffMember(int staffId, String password) throws StaffMemberNotFoundException {
-		return service.loginAsUniversityStaffMember(staffId, password);
+	public ResponseEntity<Object> loginAsUniversityStaffMember(int staffId, String password) {
+		try {
+			service.loginAsUniversityStaffMember(staffId, password);
+			return ResponseEntity.ok("Login Validated..");
+		} catch (StaffMemberNotFoundException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
 }

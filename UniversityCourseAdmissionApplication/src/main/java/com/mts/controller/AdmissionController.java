@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,27 +27,40 @@ public class AdmissionController {
 	IAdmissionService service;
 	
 	@PostMapping("/addAdmission")
-	public Admission addAdmission(@RequestBody Admission admission) {
-		return service.addAdmission(admission);
+	public ResponseEntity<Admission> addAdmission(@RequestBody Admission admission) {
+		Admission admission1=service.addAdmission(admission);
+		return new ResponseEntity<>(admission1, HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateAdmission")
-	public Admission updateAdmission(@RequestBody Admission admission) throws AdmissionNotGrantedException {
-		return service.updateAdmission(admission);
+	public ResponseEntity<Object> updateAdmission(@RequestBody Admission admission) {
+		try {
+			Admission admission1= service.updateAdmission(admission);
+			return new ResponseEntity<>(admission1, HttpStatus.OK);			
+		} catch (AdmissionNotGrantedException e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
 	}
 	
 	@DeleteMapping("/cancelAdmission/{admissionId}")
-	public Admission cancelAdmission(@PathVariable int admissionId) throws AdmissionNotGrantedException {
-		return service.cancelAdmission(admissionId);
+	public ResponseEntity<String> cancelAdmission(@PathVariable int admissionId) {	
+		try {
+			service.cancelAdmission(admissionId);
+			return ResponseEntity.ok("Deleted..");
+		} catch (AdmissionNotGrantedException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}	
 	}
 	
 	@GetMapping("/showAllAdmissionsByCourseId/{courseId}")
-	public List<Admission> showAllAdmissionsByCourseId(@PathVariable int courseId){
-		return service.showAllAdmissionsByCourseId(courseId);
+	public ResponseEntity<List<Admission>> showAllAdmissionsByCourseId(@PathVariable int courseId){
+		List<Admission> lst= service.showAllAdmissionsByCourseId(courseId);
+		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 	
 	@GetMapping("/showAllAdmissionsByDate/{admissionDate}")
-	public List<Admission> showAllAdmissionsByDate(@PathVariable LocalDate admissionDate) {
-		return service.showAllAdmissionsByDate(admissionDate);
+	public ResponseEntity<List<Admission>> showAllAdmissionsByDate(@PathVariable LocalDate admissionDate) {
+		List<Admission> lst= service.showAllAdmissionsByDate(admissionDate);
+		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 }
