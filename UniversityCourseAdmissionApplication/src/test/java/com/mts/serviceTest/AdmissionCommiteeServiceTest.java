@@ -44,8 +44,8 @@ public class AdmissionCommiteeServiceTest {
 	AdmissionCommiteeMember c1= new AdmissionCommiteeMember(101,"Sagar","7934873784","pass");
 	AdmissionCommiteeMemberDto c1DTO=new AdmissionCommiteeMemberDto(101,"Sagar");
 	
-	List<AdmissionCommiteeMember> lst= Stream.of(new AdmissionCommiteeMember(101,"Sagar","7934873784","pass"),new AdmissionCommiteeMember(102,"Magar","9934873784","word")).collect(Collectors.toList());
-	List<AdmissionCommiteeMemberDto> lstDTO=Stream.of(new AdmissionCommiteeMemberDto(101,"Sagar"),new AdmissionCommiteeMemberDto(102,"Magar")).collect(Collectors.toList());
+	List<AdmissionCommiteeMember> lst= Stream.of(c1,new AdmissionCommiteeMember(102,"Magar","9934873784","word")).collect(Collectors.toList());
+	List<AdmissionCommiteeMemberDto> lstDTO=Stream.of(c1DTO,new AdmissionCommiteeMemberDto(102,"Magar")).collect(Collectors.toList());
 	
 	@Test
 	@Order(1)
