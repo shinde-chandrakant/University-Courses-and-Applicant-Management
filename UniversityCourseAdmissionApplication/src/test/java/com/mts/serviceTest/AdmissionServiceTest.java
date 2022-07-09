@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -74,7 +75,7 @@ public class AdmissionServiceTest {
 	@Test
 	@Order(4)
 	public void testUpdateAdmission() throws AdmissionNotGrantedException {
-		when(repo.findById(c1.getAdmissionId()).get()).thenReturn(c1);
+		when(repo.findById(c1.getAdmissionId())).thenReturn(Optional.of(c1));
 
 		Admission cc1 = repo.findById(c1.getAdmissionId()).get();
 		cc1.setCourseId(2003);
@@ -87,8 +88,7 @@ public class AdmissionServiceTest {
 	@Test
 	@Order(5)
 	public void testRemoveCourse() throws AdmissionNotGrantedException {
-//		when(repo.findById(c1.getAdmissionId()).orElseThrow(()->new AdmissionNotGrantedException("Admission Id not found !"))).thenReturn(c1);
-//		when(service.removeCourse(id)).thenReturn(c1);
+		when(repo.findById(id)).thenReturn(Optional.of(c1));
 		service.cancelAdmission(id);
 		verify(repo, times(1)).delete(c1);
 	}

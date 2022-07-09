@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -58,7 +59,7 @@ public class AdmissionCommiteeServiceTest {
 	@Test
 	@Order(2)
 	public void testViewCommiteeMember() throws AdmissionMemNotFoundException {
-		when(repo.findById(id).get()).thenReturn(c1);
+		when(repo.findById(id)).thenReturn(Optional.of(c1));
 		assertEquals(c1DTO,service.viewCommiteeMember(id));
 		//assertThat(service.viewCommiteeMember(id)).isNotNull();
 	}
@@ -81,7 +82,7 @@ public class AdmissionCommiteeServiceTest {
 	@Test
 	@Order(5)
 	public void testUpdateCommiteeMember() throws AdmissionMemNotFoundException {
-		when(repo.findById(id).get()).thenReturn(c1);
+		when(repo.findById(id)).thenReturn(Optional.of(c1));
 		
 		AdmissionCommiteeMember cc1=repo.findById(id).get();
 		cc1.setAdminName("Tejas");

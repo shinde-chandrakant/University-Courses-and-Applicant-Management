@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -54,7 +55,7 @@ public class CourseServiceTest {
 	@Test
 	@Order(2)
 	public void testViewCourse() throws CourseNotFoundException {
-		when(repo.findById(id).get()).thenReturn(c1);
+		when(repo.findById(id)).thenReturn(Optional.of(c1));
 		assertEquals(c1, service.viewCourse(id));
 	}
 
@@ -68,7 +69,7 @@ public class CourseServiceTest {
 	@Test
 	@Order(4)
 	public void testUpdateCourse() throws CourseNotFoundException {
-		when(repo.findById(id).get()).thenReturn(c1);
+		when(repo.findById(id)).thenReturn(Optional.of(c1));
 
 		Course cc1 = repo.findById(id).get();
 		cc1.setCourseName("Java");
@@ -81,9 +82,8 @@ public class CourseServiceTest {
 	@Test
 	@Order(5)
 	public void testRemoveCourse() throws CourseNotFoundException {
-//		when(repo.findById(id).get()).thenReturn(c1);
-//		when(service.removeCourse(id)).thenReturn(c1);
+		when(repo.findById(id)).thenReturn(Optional.of(c1));
 		service.removeCourse(id);
-		verify(repo, times(1)).deleteById(id);
+		verify(repo, times(1)).delete(c1);
 	}
 }
