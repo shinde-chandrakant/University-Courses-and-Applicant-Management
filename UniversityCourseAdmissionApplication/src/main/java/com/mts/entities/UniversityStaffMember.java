@@ -8,7 +8,9 @@ import javax.validation.constraints.NotBlank;
 public class UniversityStaffMember {
 	@Id
 	private int staffId;
+	
 	private String password;
+	
 	@NotBlank(message = "role is mandatory")
 	private String role;
 	

@@ -27,7 +27,8 @@ public class AdmissionCommiteeController {
 	@Autowired
 	IAdmissionCommiteeMemberService service;
 	
-	@PostMapping("/addCommitee")
+//	To add committee members.
+	@PostMapping("/addCommittee")
 	public ResponseEntity<AdmissionCommiteeMember> addCommiteeMember(@RequestBody AdmissionCommiteeMember member) {
 		AdmissionCommiteeMember m1= service.addCommiteeMember(member);
 		return new ResponseEntity<>(m1, HttpStatus.OK);

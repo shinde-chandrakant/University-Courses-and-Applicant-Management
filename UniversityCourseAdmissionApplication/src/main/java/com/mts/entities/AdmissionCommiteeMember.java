@@ -9,10 +9,13 @@ import javax.validation.constraints.Pattern;
 public class AdmissionCommiteeMember {
 	@Id
 	private int adminId;
+	
 	@NotNull
 	private String adminName;
+	
 	@Pattern(regexp="[6-9]{1}[0-9]{9}",message ="contact number must have 10 digits")
 	private String adminContact;
+	
 	private String password;
 	
 	public AdmissionCommiteeMember() {

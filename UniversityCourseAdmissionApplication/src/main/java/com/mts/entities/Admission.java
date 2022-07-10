@@ -14,11 +14,15 @@ public class Admission {
 	@Id
 	@GeneratedValue
 	private int admissionId;
+	
 	@NotNull
 	private int courseId;
+	
 	@NotNull
 	private int applicantId;
+	
 	private LocalDate admissionDate;
+	
 	@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
 

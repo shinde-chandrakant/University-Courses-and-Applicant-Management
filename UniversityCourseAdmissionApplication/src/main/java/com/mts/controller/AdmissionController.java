@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -59,7 +60,7 @@ public class AdmissionController {
 	}
 	
 	@GetMapping("/showAllAdmissionsByDate/{admissionDate}")
-	public ResponseEntity<List<Admission>> showAllAdmissionsByDate(@PathVariable LocalDate admissionDate) {
+	public ResponseEntity<List<Admission>> showAllAdmissionsByDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate admissionDate) {
 		List<Admission> lst= service.showAllAdmissionsByDate(admissionDate);
 		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
