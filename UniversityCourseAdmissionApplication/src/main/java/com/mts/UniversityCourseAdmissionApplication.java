@@ -22,7 +22,7 @@ public class UniversityCourseAdmissionApplication {
 	public static Logger logger = LoggerFactory.getLogger(UniversityCourseAdmissionApplication.class);
 
 	public static void main(String[] args) {
-		logger.info("Application started ..");
+		logger.info("Application started : #########################Log ..");
 		SpringApplication.run(UniversityCourseAdmissionApplication.class, args);
 	}
 

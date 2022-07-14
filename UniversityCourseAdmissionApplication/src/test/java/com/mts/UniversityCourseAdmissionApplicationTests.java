@@ -13,7 +13,7 @@ class UniversityCourseAdmissionApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		logger.info("Testing started ..");
+		logger.info("Testing started #########################Log ....");
 	}
 
 }
