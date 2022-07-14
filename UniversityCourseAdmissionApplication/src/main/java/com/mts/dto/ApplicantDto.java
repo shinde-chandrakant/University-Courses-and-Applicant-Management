@@ -4,7 +4,9 @@ import com.mts.entities.AdmissionStatus;
 
 public class ApplicantDto {
 	private int applicantId;
+	
 	private String applicantName;
+	
 	private AdmissionStatus status;
 	
 	public ApplicantDto() {

@@ -48,7 +48,7 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 	}
 
 	@Override
-	public void removeCommiteeMember(int adminId) throws AdmissionMemNotFoundException{
+	public void removeCommiteeMember(int adminId) throws IllegalArgumentException, AdmissionMemNotFoundException{
 		repo.deleteById(adminId);	
 	}
 

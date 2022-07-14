@@ -27,13 +27,15 @@ public class AdmissionController {
 	@Autowired
 	IAdmissionService service;
 	
-	@PostMapping("/addAdmission")
+	// Add admission
+	@PostMapping
 	public ResponseEntity<Admission> addAdmission(@RequestBody Admission admission) {
 		Admission admission1=service.addAdmission(admission);
 		return new ResponseEntity<>(admission1, HttpStatus.OK);
 	}
 	
-	@PutMapping("/updateAdmission")
+	// Update admission
+	@PutMapping
 	public ResponseEntity<Object> updateAdmission(@RequestBody Admission admission) {
 		try {
 			Admission admission1= service.updateAdmission(admission);
@@ -43,7 +45,8 @@ public class AdmissionController {
 		}
 	}
 	
-	@DeleteMapping("/cancelAdmission/{admissionId}")
+	// Delete admission
+	@DeleteMapping("/{admissionId}")
 	public ResponseEntity<String> cancelAdmission(@PathVariable int admissionId) {	
 		try {
 			service.cancelAdmission(admissionId);
@@ -53,12 +56,14 @@ public class AdmissionController {
 		}	
 	}
 	
-	@GetMapping("/showAllAdmissionsByCourseId/{courseId}")
+	// Get all admission by course Id
+	@GetMapping("/{courseId}")
 	public ResponseEntity<List<Admission>> showAllAdmissionsByCourseId(@PathVariable int courseId){
 		List<Admission> lst= service.showAllAdmissionsByCourseId(courseId);
 		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 	
+	// Get all admission by course Admission Date
 	@GetMapping("/showAllAdmissionsByDate/{admissionDate}")
 	public ResponseEntity<List<Admission>> showAllAdmissionsByDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate admissionDate) {
 		List<Admission> lst= service.showAllAdmissionsByDate(admissionDate);

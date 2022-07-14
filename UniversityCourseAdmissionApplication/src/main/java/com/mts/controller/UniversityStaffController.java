@@ -28,13 +28,15 @@ public class UniversityStaffController {
 	@Autowired	
 	IUniversityStaffService service;
 	
-	@PostMapping("/addStaff")
+	// Add Staff
+	@PostMapping
 	public ResponseEntity<UniversityStaffMember> addStaff(@RequestBody UniversityStaffMember user) {
 		UniversityStaffMember member1= service.addStaff(user);
 		return new ResponseEntity<>(member1, HttpStatus.OK);
 	}
 	
-	@PutMapping("/updateStaff")
+	//Update staff
+	@PutMapping
 	public ResponseEntity<Object> updateStaff(@RequestBody UniversityStaffMember user) {
 		try {
 			UniversityStaffMember applicant1= service.updateStaff(user);
@@ -44,7 +46,8 @@ public class UniversityStaffController {
 		}
 	}
 	
-	@GetMapping("/viewStaffMember/{staffid}")
+	// Get Staff
+	@GetMapping("/{staffid}")
 	public ResponseEntity<Object> viewStaffMember(@PathVariable int staffid){
 		try {
 			StaffMemberDto applicant1= service.viewStaff(staffid);
@@ -54,7 +57,8 @@ public class UniversityStaffController {
 		}
 	}
 	
-	@DeleteMapping("/removeStaff/{staffid}")
+	// Remove Staff By staffId
+	@DeleteMapping("/{staffid}")
 	public ResponseEntity<String> removeStaff(@PathVariable int staffid) {
 		
 		try {
@@ -65,18 +69,21 @@ public class UniversityStaffController {
 		}
 	}
 	
-	@GetMapping("/viewAllStaffs")
+	// Get all Staffs
+	@GetMapping
 	public ResponseEntity<List<StaffMemberDto>> viewAllStaffs(){
 		List<StaffMemberDto> lst= service.viewAllStaffs();
 		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 	
+	// Add Course
 	@PostMapping("/addCourse")
 	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
 		Course course1= service.addCourse(course);
 		return new ResponseEntity<>(course1, HttpStatus.OK);
 	}
 	
+	// Delete Course by courseId
 	@DeleteMapping("/removeCourse/{courseId}")
 	public ResponseEntity<String> removeCourse(@PathVariable int courseId) {
 		
@@ -88,6 +95,7 @@ public class UniversityStaffController {
 		}
 	}
 	
+	// Update Course
 	@PutMapping("/updateCourse")
 	public ResponseEntity<Object> updateCourse(@RequestBody Course course) {
 		

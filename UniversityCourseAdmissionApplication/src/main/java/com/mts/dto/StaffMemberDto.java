@@ -3,6 +3,7 @@ package com.mts.dto;
 public class StaffMemberDto {
 
 	private int staffId;
+	
 	private String role;
 	
 	public StaffMemberDto() {

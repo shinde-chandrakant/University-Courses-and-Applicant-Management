@@ -25,13 +25,15 @@ public class CourseController {
 	@Autowired
 	ICourseService service;
 
-	@PostMapping("/addCourse")
+	// Add Course
+	@PostMapping
 	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
 		Course course1 = service.addCourse(course);
 		return new ResponseEntity<>(course1, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/removeCourse/{courseId}")
+	// Delete course by courseId
+	@DeleteMapping
 	public ResponseEntity<String> removeCourse(@PathVariable int courseId) {
 		try {
 			service.removeCourse(courseId);
@@ -41,6 +43,7 @@ public class CourseController {
 		}
 	}
 
+	// Update Course
 	@PutMapping("/updateCourse")
 	public ResponseEntity<Object> updateCourse(@RequestBody Course course) {
 		try {
@@ -51,7 +54,8 @@ public class CourseController {
 		}
 	}
 
-	@GetMapping("/viewAllCourses")
+	// View All Courses
+	@GetMapping
 	public ResponseEntity<List<Course>> viewAllCourses() {
 		List<Course> lst = service.viewAllCourses();
 		return new ResponseEntity<>(lst, HttpStatus.OK);

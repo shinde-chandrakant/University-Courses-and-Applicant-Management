@@ -27,13 +27,15 @@ public class ApplicantController {
 	@Autowired
 	IApplicantService service;
 
-	@PostMapping("/addApplicant")
+	// Add Applicant
+	@PostMapping
 	public ResponseEntity<Applicant> addApplicant(@RequestBody Applicant applicant) {
 		Applicant applicant1 = service.addApplicant(applicant);
 		return new ResponseEntity<>(applicant1, HttpStatus.OK);
 	}
 
-	@PutMapping("/updateApplicant")
+	// Update Applicant
+	@PutMapping
 	public ResponseEntity<Object> updateApplicant(@RequestBody Applicant applicant) {
 		try {
 			Applicant applicant1 = service.updateApplicant(applicant);
@@ -43,7 +45,8 @@ public class ApplicantController {
 		}
 	}
 
-	@DeleteMapping("/deleteApplicant")
+	// Delete Applicant
+	@DeleteMapping
 	public ResponseEntity<String> deleteApplicant(@RequestBody Applicant applicant) {
 		try {
 			service.deleteApplicant(applicant);
@@ -53,7 +56,8 @@ public class ApplicantController {
 		}
 	}
 
-	@GetMapping("/viewApplicant/{applicantId}")
+	// View Applicant by applicantId
+	@GetMapping("/{applicantId}")
 	public ResponseEntity<Object> viewApplicant(@PathVariable int applicantId) {
 		try {
 			ApplicantDto applicant1 = service.viewApplicant(applicantId);
@@ -63,6 +67,7 @@ public class ApplicantController {
 		}
 	}
 
+	// View All Applicants By Status
 	@GetMapping("/viewAllApplicantsByStatus/{status}")
 	public ResponseEntity<List<ApplicantDto>> viewAllApplicantsByStatus(@PathVariable AdmissionStatus status) {
 		List<ApplicantDto> lst = service.viewAllApplicantsByStatus(status);

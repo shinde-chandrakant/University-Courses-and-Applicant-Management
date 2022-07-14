@@ -14,7 +14,7 @@ public interface IAdmissionCommiteeMemberService {
 
 	public AdmissionCommiteeMemberDto viewCommiteeMember(int adminId)throws AdmissionMemNotFoundException;
 
-	public void removeCommiteeMember(int adminId)throws AdmissionMemNotFoundException;
+	public void removeCommiteeMember(int adminId)throws AdmissionMemNotFoundException, IllegalArgumentException;
 
 	public List<AdmissionCommiteeMemberDto> viewAllCommiteeMembers();
 

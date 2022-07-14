@@ -2,6 +2,8 @@ package com.mts.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,14 +29,15 @@ public class AdmissionCommiteeController {
 	@Autowired
 	IAdmissionCommiteeMemberService service;
 	
-//	To add committee members.
-	@PostMapping("/addCommittee")
-	public ResponseEntity<AdmissionCommiteeMember> addCommiteeMember(@RequestBody AdmissionCommiteeMember member) {
+	// To add committee members.
+	@PostMapping
+	public ResponseEntity<AdmissionCommiteeMember> addCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember member) {
 		AdmissionCommiteeMember m1= service.addCommiteeMember(member);
 		return new ResponseEntity<>(m1, HttpStatus.OK);
 	}
 	
-	@PutMapping("/updateCommitee")
+	// update admission committee member details
+	@PutMapping
 	public ResponseEntity<Object> updateCommiteeMember(@RequestBody AdmissionCommiteeMember member) throws AdmissionMemNotFoundException {
 		try {
 			AdmissionCommiteeMember m1=service.updateCommiteeMember(member);
@@ -44,7 +47,8 @@ public class AdmissionCommiteeController {
 		}
 	}
 	
-	@GetMapping("/viewCommitee/{adminId}")
+	// Get admission committee member details by admission id
+	@GetMapping("/{adminId}")
 	public ResponseEntity<Object> viewCommiteeMember(@PathVariable int adminId) {
 		try {
 			AdmissionCommiteeMemberDto m1= service.viewCommiteeMember(adminId);
@@ -54,22 +58,25 @@ public class AdmissionCommiteeController {
 		}		
 	}
 	
-	@DeleteMapping("/removeCommitee/{adminId}")
+	// Delete admission committee member by admission id
+	@DeleteMapping("/{adminId}")
 	public ResponseEntity<String> removeCommiteeMember(@PathVariable int adminId){
 		try {
 			service.removeCommiteeMember(adminId);
 			return ResponseEntity.ok("Deleted..");
-		} catch (AdmissionMemNotFoundException e) {
+		} catch (AdmissionMemNotFoundException | IllegalArgumentException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@GetMapping("/viewAllCommitee")
-	public ResponseEntity<List<AdmissionCommiteeMemberDto>> viewAllCommiteeMembers(){
+	// view all committee members
+	@GetMapping
+	public ResponseEntity<List<AdmissionCommiteeMemberDto>> viewAllCommitteeMembers(){
 		List<AdmissionCommiteeMemberDto> lst= service.viewAllCommiteeMembers();
 		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 	
+	// Get Admission Result by applicant id
 	@GetMapping("/getAdmissionResult/{applicantId}")
 	public ResponseEntity<AdmissionStatus> getAdmissionResult(@PathVariable int applicantId) {
 		AdmissionStatus status= service.provideAdmissionResult(applicantId);

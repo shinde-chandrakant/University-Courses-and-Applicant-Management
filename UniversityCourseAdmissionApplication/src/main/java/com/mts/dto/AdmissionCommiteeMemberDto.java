@@ -3,6 +3,7 @@ package com.mts.dto;
 public class AdmissionCommiteeMemberDto {
 	
 	private int adminId;
+	
 	private String adminName;
 
 	public AdmissionCommiteeMemberDto() {
