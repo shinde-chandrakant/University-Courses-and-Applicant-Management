@@ -64,7 +64,7 @@ public class AdmissionCommiteeController {
 		try {
 			service.removeCommiteeMember(adminId);
 			return ResponseEntity.ok("Deleted..");
-		} catch (AdmissionMemNotFoundException | IllegalArgumentException e) {
+		} catch (AdmissionMemNotFoundException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}

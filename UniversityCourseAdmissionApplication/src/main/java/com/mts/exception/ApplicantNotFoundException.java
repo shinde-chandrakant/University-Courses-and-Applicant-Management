@@ -1,6 +1,6 @@
 package com.mts.exception;
 
-public class ApplicantNotFoundException extends Exception{
+public class ApplicantNotFoundException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 

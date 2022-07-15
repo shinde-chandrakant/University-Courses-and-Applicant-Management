@@ -1,6 +1,6 @@
 package com.mts.exception;
 
-public class StaffMemberNotFoundException extends Exception{
+public class StaffMemberNotFoundException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 
