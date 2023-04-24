@@ -1,4 +1,4 @@
-# UniversityCourseAdmissionApplication   
+# University_Course_and_Applicant_Management   
 ## Problem Statement  
 To Create an Application for University Course Selection.  
 The Applicant should be able to search University Program for Which applicant wishes to take admission. Applicant can apply online and fill up the form, without any login.  
